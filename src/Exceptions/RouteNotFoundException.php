@@ -2,7 +2,7 @@
 
 namespace App\Exceptions;
 
-class RouteNotFoundException
+class RouteNotFoundException extends \Exception
 {
 
 }
