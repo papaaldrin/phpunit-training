@@ -1,0 +1,30 @@
+# @format
+
+version: '3'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '8080:80' # Map host port 8080 to container port 80
+    volumes:
+      - ./:/var/www/html # Mount your PHP application code into the container
+    depends_on:
+      - db
+
+  db:
+    image: mysql:latest
+    ports:
+      - '3306:3306' # Map host port 3306 to container port 3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: my_database
+      MYSQL_USER: my_user
+      MYSQL_PASSWORD: my_password
+    volumes:
+      - db_data:/var/lib/mysql
+
+volumes:
+  db_data:
